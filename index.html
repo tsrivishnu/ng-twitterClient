@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
   <title>AngularTwitterClient</title>
 
@@ -23,15 +23,16 @@
   </header>
 
   <main role="main" style="margin: 50px">
-    <div class='container'>
+    <div class='container' ng-controller='SearchController as searchCtrl'>
       <!-- This is main view containter -->
       <div class='well'>
         <div class='row'>
           <div class="col-md-12">
-            Search for any recent recent tweets with <input type='text' class="form-control" placeholder='Type to search (min 4 chars)' ng-model='query'>
+            Search for any recent recent tweets with <input type='text' class="form-control" placeholder='Type to search (min 4 chars)' ng-model='searchCtrl.query'>
           </div>
         </div>
-        <p> Search results for query: {{ query }}</p>
+        <p ng-show="searchCtrl.query == '' || searchCtrl.query == null">No search query entered.</p>
+        <p ng-hide="searchCtrl.query == '' || searchCtrl.query == null"> Search results for query: {{ searchCtrl.query }}</p>
       </div>
 
       <div class='row' style='margin-top: 20px'>

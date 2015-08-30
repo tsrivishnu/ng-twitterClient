@@ -25,5 +25,9 @@
         }
       });
     }
+    this.order = function(predicate) {
+      _this.reverse = (_this.predicate === predicate) ? !_this.reverse : false;
+      _this.predicate = predicate;
+    };
   }]);
 })();

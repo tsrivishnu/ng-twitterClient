@@ -6,6 +6,7 @@
   <script type='text/javascript' src='js/angular.min.js'></script>
   <script type='text/javascript' src='js/app.js'></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="css/app.css"></link>
 </head>
 
 
@@ -37,14 +38,32 @@
         <div class='row' style='margin-top: 10px;'>
           <div class='col-md-12'>
             <div class='row'>
-              <div class='col-md-12'>
+              <div class='col-md-6'>
                 Filters:
                 <div class='row'>
-                  <span class="col-md-2">
+                  <span class="col-md-6">
                     <input type='text' class="form-control" ng-model='searchCtrl.filters.text' placeholder='Text Containing'>
                   </span>
-                  <span class="col-md-2">
+                  <span class="col-md-6">
                     <input type='text' class="form-control" ng-model='searchCtrl.filters.user.name' placeholder='Name Containing'>
+                  </span>
+                </div>
+              </div>
+
+              <div class='col-md-6'>
+                Order:
+                <div class='row'>
+                  <span class="col-md-2">
+                    <a href="" ng-click="searchCtrl.order('user.name')">Name</a>
+                    <span class="sortorder" ng-show="searchCtrl.predicate === 'user.name'" ng-class="{reverse : searchCtrl.reverse}"></span>
+                  </span>
+                  <span class="col-md-2">
+                    <a href="" ng-click="searchCtrl.order('text')">Text</a>
+                    <span class="sortorder" ng-show="searchCtrl.predicate === 'text'" ng-class="{reverse : searchCtrl.reverse}"></span>
+                  </span>
+                  <span class="col-md-2">
+                    <a href="" ng-click="searchCtrl.order('user.screen_name')">Handle</a>
+                    <span class="sortorder" ng-show="searchCtrl.predicate === 'user.screen_name'" ng-class="{reverse : searchCtrl.reverse}"></span>
                   </span>
                 </div>
               </div>
@@ -56,7 +75,7 @@
 
       <div class='row' style='margin-top: 20px'>
         <div class='col-md-12'>
-          <div class='tweets' ng-repeat='tweet in searchCtrl.tweets | filter:searchCtrl.filters'>
+          <div class='tweets' ng-repeat='tweet in searchCtrl.tweets | filter:searchCtrl.filters | orderBy: searchCtrl.predicate: searchCtrl.reverse'>
             <div class='tweet well' style='margin-top:10px;'>
               <div class='row'>
                 <div class='user-image col-md-1'>

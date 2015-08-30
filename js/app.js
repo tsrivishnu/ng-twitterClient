@@ -2,28 +2,26 @@
 
   var app = angular.module('twitterClient', []);
 
-  app.controller('SearchController', function(){
-    this.query = '';
-    this.tweets = sampleTweets;
+  // config to set allow cross origin requests header
+  app.config(function($httpProvider) {
+      //Enable cross domain calls
+      $httpProvider.defaults.useXDomain = true;
+
+      //Remove the header used to identify ajax call  that would prevent CORS from working
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });
 
-  var sampleTweets = [
-    {
-      user: {
-        name: "Vishnu",
-        profile_image_url: 'http://1.gravatar.com/avatar/bcade31197a5623384d853c3c5fac28a',
-        screen_name: '@vishnu',
-      },
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-    },
-    {
-      user: {
-        name: "Shiguru",
-        profile_image_url: 'http://1.gravatar.com/avatar/bcade31197a5623384d853c3c5fac28a',
-        screen_name: '@guru',
-      },
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-    }
-  ]
+  app.controller('SearchController', ['$http', function($http){
+    this.query = '';
+    this.tweets = [];
 
+    var _this = this;
+    this.performTweetSearch = function() {
+      $http.get(
+        'http://ng-tweet-search.srivishnu.totakura.in/tweets/search?query='+_this.query
+      ).success(function(data){
+        _this.tweets = data;
+      });
+    }
+  }]);
 })();

@@ -28,10 +28,10 @@
       <div class='well'>
         <div class='row'>
           <div class="col-md-12">
-            Search for any recent recent tweets with <input type='text' class="form-control" placeholder='Type to search (min 4 chars)'>
-            {{ 1 + 1 }}
+            Search for any recent recent tweets with <input type='text' class="form-control" placeholder='Type to search (min 4 chars)' ng-model='query'>
           </div>
         </div>
+        <p> Search results for query: {{ query }}</p>
       </div>
 
       <div class='row' style='margin-top: 20px'>

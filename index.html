@@ -37,20 +37,20 @@
 
       <div class='row' style='margin-top: 20px'>
         <div class='col-md-12'>
-          <div class='tweets'>
+          <div class='tweets' ng-repeat='tweet in searchCtrl.tweets'>
             <div class='tweet well' style='margin-top:10px;'>
               <div class='row'>
                 <div class='user-image col-md-1'>
-                  <img src="" class='img-thumbnail'>
+                  <img src="{{tweet.user.profile_image_url}}" class='img-thumbnail'>
                 </div>
                 <div class='user-image col-md-9'>
                   <div class='row'>
-                    <span> <strong>Username</strong></span>
-                    <span class="label label-primary">@handle</span>
+                    <span> <strong>{{tweet.user.name}}</strong></span>
+                    <span class="label label-primary">@{{tweet.user.screen_name}}</span>
                   </div>
                   <div class='row'>
                     <div class='tweet-text'>
-                      Tweet text comes here
+                      {{tweet.text}}
                     </div>
                   </div>
                 <div>

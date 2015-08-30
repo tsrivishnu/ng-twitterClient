@@ -20,7 +20,9 @@
       $http.get(
         'http://ng-tweet-search.srivishnu.totakura.in/tweets/search?query='+_this.query
       ).success(function(data){
-        _this.tweets = data;
+        if(data.length != 0){
+          _this.tweets = data;
+        }
       });
     }
   }]);

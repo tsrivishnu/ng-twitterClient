@@ -33,11 +33,30 @@
         </div>
         <p ng-show="searchCtrl.query == '' || searchCtrl.query == null">No search query entered.</p>
         <p ng-hide="searchCtrl.query == '' || searchCtrl.query == null"> Search results for query: {{ searchCtrl.query }}</p>
+
+        <div class='row' style='margin-top: 10px;'>
+          <div class='col-md-12'>
+            <div class='row'>
+              <div class='col-md-12'>
+                Filters:
+                <div class='row'>
+                  <span class="col-md-2">
+                    <input type='text' class="form-control" ng-model='searchCtrl.filters.text' placeholder='Text Containing'>
+                  </span>
+                  <span class="col-md-2">
+                    <input type='text' class="form-control" ng-model='searchCtrl.filters.user.name' placeholder='Name Containing'>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
 
       <div class='row' style='margin-top: 20px'>
         <div class='col-md-12'>
-          <div class='tweets' ng-repeat='tweet in searchCtrl.tweets'>
+          <div class='tweets' ng-repeat='tweet in searchCtrl.tweets | filter:searchCtrl.filters'>
             <div class='tweet well' style='margin-top:10px;'>
               <div class='row'>
                 <div class='user-image col-md-1'>

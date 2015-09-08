@@ -5,3 +5,7 @@
 .sortorder.reverse:after {
   content: '\25bc';
 }
+
+span.handle{
+    cursor: pointer;
+}

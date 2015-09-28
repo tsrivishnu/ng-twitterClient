@@ -13,12 +13,14 @@
       // define the routes
       $routeProvider
       .when('/',{
-        templateUrl:'templates/search.html',
-        controller: 'SearchController'
+        templateUrl:'templates/search.html'
       })
       .when('/info',{
         templateUrl:'templates/userinfo.html',
         controller: 'UserInfoController'
+      })
+      .otherwise({
+        redirectTo: '/'
       });
   });
 
@@ -45,16 +47,12 @@
     this.getInfo=function(screenname){
       handledata.setName(screenname);
         $location.path('/info');
-        $route.reload();    
+        $route.reload();
     };
-    
-
-    
-
   }]);
 
   //userinfo controller
-  app.controller('UserInfoController',['$http','handledata','$scope',function($http,handledata,$scope){
+  app.controller('UserInfoController', ['$http', 'handledata', '$scope', function($http, handledata, $scope){
       $scope.userInfo={};
       //get user data
       $http.get(
@@ -62,7 +60,6 @@
       ).success(function(data){
         $scope.userInfo=data;
       });
-
   }]);
 
   //Data Exchange Service
@@ -72,8 +69,7 @@
         this.handlename=name;
       };
       this.getName=function(){
-        return this.handlename;  
+        return this.handlename;
       };
     });
-
 })();
